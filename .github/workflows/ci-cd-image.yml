@@ -1,9 +1,6 @@
 name: Build, Push and Deploy Docker Image
 run-name: Build, Push and Deploy Image
 on: [push]
-  push:
-    branches: [ "main" ]
-  workflow_dispatch:
 env:
   IMAGE_NAME: "ghcr.io/yaya777o/nginx-sitiazzaria"
 jobs:
@@ -24,7 +21,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.TOKEN_GITHUB }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Push Image
         run: docker push $IMAGE_NAME
 
@@ -39,7 +36,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.TOKEN_GITHUB }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: stop and remove existing container
         run: docker compose down --rmi all
       - name: start container
