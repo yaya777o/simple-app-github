@@ -1,6 +1,9 @@
 name: Build, Push and Deploy Docker Image
 run-name: Build, Push and Deploy Image
 on: [push]
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
 env:
   IMAGE_NAME: "ghcr.io/yaya777o/nginx-sitiazzaria"
 jobs:
