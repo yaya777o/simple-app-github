@@ -4,7 +4,7 @@ on: [push]
   push:
     branches: [ "main" ]
   workflow_dispatch:
-en
+env:
   IMAGE_NAME: "ghcr.io/yaya777o/nginx-sitiazzaria"
 jobs:
   build-push-image:
