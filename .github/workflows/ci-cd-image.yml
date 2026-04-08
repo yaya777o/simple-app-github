@@ -4,7 +4,7 @@ on: [push]
   push:
     branches: [ "main" ]
   workflow_dispatch:
-env:
+en
   IMAGE_NAME: "ghcr.io/yaya777o/nginx-sitiazzaria"
 jobs:
   build-push-image:
@@ -34,8 +34,12 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-      - name: Login to GitHub Registry
-        run: echo ${{ secrets.TOKEN_GITHUB }} | docker login ghcr.io -u yaya777o --password-stdin
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.TOKEN_GITHUB }}
       - name: stop and remove existing container
         run: docker compose down --rmi all
       - name: start container
