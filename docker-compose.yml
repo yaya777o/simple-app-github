@@ -1,0 +1,5 @@
+services:
+  webserver:
+    image: ghcr.io/yaya777o/nginx-sitiazzaria
+    ports:
+      - "8080:80"
